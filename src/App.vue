@@ -33,7 +33,7 @@ export default {
   },
   methods:{
     logoClick(){
-      window.location.href = "/";
+      this.$router.push( '/' );
     },
     onUserEditClick(){
       this.$router.push( {name:'login'} );
@@ -74,11 +74,11 @@ export default {
 
   padding: 7px 15px 9px 15px;
   border-radius: 5px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
 
   font-size: 15pt;
   font-weight: 600;
-  background-color: white;
+  /* background-color: white; */
 }
 .app-header-logo > h4{
   margin:10px;  
