@@ -7,8 +7,11 @@ export default {
     },
     createLocalUser(userName){
         console.log('POKER SERVICE :: createLocalUser ' + userName);
-        let userId = this.getNewRandomPart() + "-" + Date.now();
-        let userObj = { userId, userName };
+        let userObjStr = localStorage.getItem("vm-pp-user");
+        let userObj = userObjStr ? JSON.parse(userObjStr) : null;
+
+        let userId = userObj?.userId ? userObj.userId : (this.getNewRandomPart() + "-" + Date.now());
+        userObj = { userId, userName };
         //Sync
         localStorage.setItem("vm-pp-user", JSON.stringify(userObj));
         //DB - Fire and forget
@@ -63,6 +66,7 @@ export default {
             let matchingUser = roomObj.users.find( user => { return user.userId == userObj.userId } );
             if(matchingUser){
                 console.log('User already in room');
+                matchingUser.userName =userObj.userName;
             }else{
                 console.log('Pushing current user in room users, as not found');
                 roomObj.users.push(userObj);
@@ -71,11 +75,15 @@ export default {
             //Copy necessary
             let partRoomObj = {};
             partRoomObj.users = roomObj.users;
+            console.log('Users payload');
+            console.log(partRoomObj);
 
             //Save by merge, wait
             await setDoc(doc(db, 'rooms', roomObj.roomId), partRoomObj, { merge: true });
             docSnap = await getDoc(doc(db, 'rooms', roomObj.roomId));
             roomObj = docSnap.data();
+            console.log('Final room');
+            console.log(roomObj);
             return roomObj;
         }else{
             return null;

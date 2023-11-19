@@ -1,7 +1,7 @@
 <template>
     <div class="app-game-room-header" v-if="room">
         <div class="app-game-room-details">
-            <p><b>{{ room.teamName }} Team</b> Planning Poker hosted by <b>{{ room.owner?room.owner.userName:'' }}</b>
+            <p><b>{{ room.teamName }} Team</b> Planning Poker hosted by <b>{{ ownerObjFromUsers?ownerObjFromUsers.userName:'' }}</b>
                 &nbsp;&nbsp; <el-button type="primary" icon="DocumentCopy" round @click="onCopyLink" size="small"
                 title="Copy Room Link">Room Link</el-button>
             </p>
@@ -173,6 +173,18 @@ export default{
         }
     },
     computed:{
+        ownerObjFromUsers(){
+            if(this.room?.owner?.userName){
+                console.log(1);
+                if(this.room?.users?.length>0){
+                    console.log(2);
+                    let ownerFromUsers = this.room.users.find( u => { return u.userId == this.room.owner.userId; } );
+                    console.log(ownerFromUsers);
+                    return ownerFromUsers?ownerFromUsers:this.room.owner;
+                }
+            }
+            return null;
+        },
         storyNameHasError(){
             return this.room.state=='SETUP' && (!this.room.currentStoryName || this.room.currentStoryName.length<4);
         },

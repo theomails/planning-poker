@@ -7,18 +7,18 @@ import VueProgressBar from "@aacassandra/vue3-progressbar";
 import App from './App.vue'
 
 const options = {
-    color: "#7AC954",
-    failedColor: "#CC421C",
-    thickness: "5px",
-    transition: {
-      speed: "0.2s",
-      opacity: "0.6s",
-      termination: 300,
-    },
-    autoRevert: true,
-    location: "top",
-    inverse: false,
-  };
+  color: "#7AC954",
+  failedColor: "#CC421C",
+  thickness: "5px",
+  transition: {
+    speed: "0.2s",
+    opacity: "0.6s",
+    termination: 300,
+  },
+  autoRevert: true,
+  location: "top",
+  inverse: false,
+};
 
 const app = createApp(App)
     .use(ElementPlus)
@@ -30,3 +30,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.mount('#app');
+
+
+

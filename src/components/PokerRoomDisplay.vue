@@ -82,7 +82,7 @@ export default{
                     console.log(this.room);
 
                     //Just call again, as anyone could collide with another one when joining
-                    await pokerservice.getPokerRoomAfterJoining(this.roomId, this.user);
+                    this.room = await pokerservice.getPokerRoomAfterJoining(this.roomId, this.user);
                     
                     //Add a listener hook
                     pokerservice.listenToRoom(roomObj, this.onRoomChange);
