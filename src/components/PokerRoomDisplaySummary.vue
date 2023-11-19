@@ -81,7 +81,7 @@ export default{
                     maxVotesPcard = pcard;
                 }
             });
-            maxVotesPcardAgreementPerc = parseInt(maxVotes * 100 / totalVotes);
+            maxVotesPcardAgreementPerc = totalVotes==0?0:parseInt(maxVotes * 100 / totalVotes);
             console.log('{ maxVotes, maxVotesPcard, totalVotes, maxVotesPcardAgreementPerc }');
             console.log({ maxVotes, maxVotesPcard, totalVotes, maxVotesPcardAgreementPerc });
             return { maxVotes, maxVotesPcard, totalVotes, maxVotesPcardAgreementPerc };

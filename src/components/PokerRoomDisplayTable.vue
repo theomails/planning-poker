@@ -12,7 +12,7 @@
         <div class="app-pp-table" ref="app-pp-table">
 
             <template v-if="room.state=='VOTING'">
-                <el-popconfirm title="Are you sure you want to reveal cards for all?" width="350px" @confirm="onRevealCards">
+                <el-popconfirm popper-class="app-popper" title="Are you sure you want to reveal cards for all?" width="350px" @confirm="onRevealCards">
                     <template #reference>
                         <el-button type="primary" round>Reveal Cards</el-button>
                     </template>
@@ -193,7 +193,7 @@ export default {
     margin: auto;
 
     border: 3px solid #b3be7c;
-    border-radius: 60px;
+    border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 
     display: flex;
@@ -232,5 +232,12 @@ export default {
 .app-pp-user-card-coffee{
     color: brown;
     font-size: 1.2em;
+}
+.app-popper{
+    padding: 12px 9px;
+}
+.app-popper *{
+    font-size: 11pt;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 </style>
