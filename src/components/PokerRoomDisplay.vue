@@ -5,9 +5,9 @@
             <div>
                 <PokerRoomDisplayTable v-if="room.state!='SETUP'" :room="room" :user="user" 
                     @actionClicked="onActionClicked"/>
-                <PokerRoomDisplayMeChoose v-if="room.state=='VOTING'" :room="room" :availableCards="availableCards" :user="user" 
+                <PokerRoomDisplayMeChoose v-if="room.state=='VOTING'" :room="room" :user="user" 
                     @cardSelected="onCardSelected"/>
-                <PokerRoomDisplaySummary v-else-if="room.state=='SUMMARY'" :selectedCards="room.currentStorySelectedCards" :availableCards="availableCards" />
+                <PokerRoomDisplaySummary v-else-if="room.state=='SUMMARY'" :selectedCards="room.currentStorySelectedCards" />
             </div>
         </div>
     </div>
@@ -24,8 +24,7 @@ export default{
     data(){
         return {
             user: null,
-            room: null,
-            availableCards: ['XS', 'S', 'M', 'L', 'XL','COFFEE']
+            room: null
         }
     },
     methods:{

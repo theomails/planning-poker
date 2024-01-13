@@ -7,15 +7,18 @@
                     :class="{'app-point-card-selected':isThisSelectedByCurrentUser(pcard), 'app-point-card-nomore':iHaveMadeASelection}"
                     >
                 <el-icon v-if="pcard=='COFFEE'" class="app-point-card-coffee"><CoffeeCup /></el-icon>
-                <p v-else>{{ pcard }}</p>
+                <p v-else>
+                    <b>{{ pcard }}</b><br/>
+                    {{ cardHoursStr(pcard) }}
+                </p>
             </div>
         </div>
     </div>
 </template>
 <script>
-
+import cardservice from '@/cardservice';
 export default{
-    props: ["availableCards", "room", "user"],
+    props: ["room", "user"],
     data(){
         return {
             
@@ -28,12 +31,18 @@ export default{
         },
         isThisSelectedByCurrentUser(pcard){
             return this.user && (pcard==this.room.currentStorySelectedCards[this.user.userId]);
+        },
+        cardHoursStr(cardKey){
+            return cardservice.getHoursStr(cardKey);
         }
     },
     computed:{
         iHaveMadeASelection(){
             if(this.user && this.room.currentStorySelectedCards[this.user.userId]) return true;
             else return false;
+        },
+        availableCards(){
+            return cardservice.getAvailableCards();
         }
     },
     mounted(){},
@@ -55,9 +64,10 @@ export default{
     padding: 10px;
     margin: 5px;
 
-    width:28px;
-    height:46px;
+    width:38px;
+    height:56px;
     cursor: pointer;
+    font-size: 0.8em;
 
     border: 1px solid #b3be7c;
     border-radius: 6px;

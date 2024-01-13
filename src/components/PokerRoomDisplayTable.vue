@@ -4,7 +4,10 @@
             <div class="app-pp-user-card" :class="{'app-pp-user-card-ready':userHasMadeSelection(user.userId), 'app-pp-user-card-revealed':room.state=='SUMMARY'}">
                 <div v-if="(room.state=='SUMMARY') && room.currentStorySelectedCards[user.userId]">
                     <el-icon v-if="room.currentStorySelectedCards[user.userId]=='COFFEE'" class="app-pp-user-card-coffee"><CoffeeCup /></el-icon>
-                    <span v-else>{{ room.currentStorySelectedCards[user.userId] }}</span>
+                    <span v-else>
+                        <b>{{ room.currentStorySelectedCards[user.userId] }}</b><br/>
+                        {{ cardHoursStr(room.currentStorySelectedCards[user.userId]) }}
+                    </span>
                 </div>
             </div>
             <span class="app-pp-user-name">{{ user.userName }}</span>
@@ -26,6 +29,7 @@
 </template>
 <script>
 import seatsservice from "@/seatsservice.js"
+import cardservice from "@/cardservice";
 
 export default {
     props: ['room', 'user'],
@@ -43,6 +47,9 @@ export default {
         },
         userHasMadeSelection(userId){
             return this.room.currentStorySelectedCards[userId]?true:false;
+        },
+        cardHoursStr(cardKey){
+            return cardservice.getHoursStr(cardKey);
         },
         schedulePlaceUsers(){
             this.$nextTick(()=>{
@@ -217,8 +224,9 @@ export default {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
-    width:30px;
-    height:40px;
+    width:40px;
+    height:50px;
+    font-size: 0.8em;
     background-color: #d3d4cc;
     border-radius: 5px;
 }

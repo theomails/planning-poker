@@ -8,7 +8,10 @@
                 </div>
                 <div class="app-stat-card"  >
                     <el-icon v-if="pcard=='COFFEE'" class="app-point-card-coffee"><CoffeeCup /></el-icon>
-                    <p v-else>{{ pcard }}</p>
+                    <p v-else>
+                        <b>{{ pcard }}</b><br/>
+                        {{ cardHoursStr(pcard) }}
+                    </p>
                 </div>
                 <div class="app-stat-vote-txt">
                     {{ selectedCardsHisto[pcard] }} votes
@@ -26,9 +29,10 @@
     </div>
 </template>
 <script>
+import cardservice from '@/cardservice.js'
 
 export default{
-    props: ["selectedCards", "availableCards"],
+    props: ["selectedCards"],
     data(){
         return {
             agreementColors: [
@@ -41,9 +45,14 @@ export default{
         }
     },
     methods:{
-
+        cardHoursStr(cardKey){
+            return cardservice.getHoursStr(cardKey);
+        }
     },
     computed:{
+        availableCards(){
+            return cardservice.getAvailableCards();
+        },
         selectedCardsHisto(){
             const selectedCardsHisto = {};
             Object.keys(this.selectedCards).forEach((key)=>{
@@ -125,8 +134,10 @@ export default{
     padding: 10px;
     margin: 5px;
 
-    width:16px;
-    height:30px;
+    width:66px;
+    height:50px;
+    font-size: 0.8em;
+    text-align: center;
 
     border: 1px solid #b3be7c;
     border-radius: 6px;
