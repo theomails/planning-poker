@@ -1,18 +1,22 @@
+//The Below Spaces are Very Important. Numeric keys don't work!!.
 export const cardSettings = {
-    'XS': {
-      hours: '<10'
+    'SP 1': {
+      hours: '1-10h'
     },
-    'S': {
-      hours: '10-20'
+    'SP 2': {
+      hours: '11-20h'
     }, 
-    'M': {
-      hours: '21-50'
+    'SP 3': {
+      hours: '21-30h'
     }, 
-    'L': {
-      hours: '51-100'
+    'SP 5': {
+      hours: '31-50h'
     }, 
-    'XL': {
-      hours: '100+'
+    'SP 8': {
+      hours: '51-75h'
+    }, 
+    'SP 13': {
+      hours: '76-100h'
     },
     'COFFEE': {}
   };
@@ -22,7 +26,8 @@ export default {
         return Object.keys(cardSettings);
     },
     getCardSettings(cardKey){
-        return cardSettings[cardKey];
+      console.log('cardKey ' + cardKey);
+        return cardSettings[cardKey]?cardSettings[cardKey]:{};
     },
     getHoursStr(cardKey){
         return this.getCardSettings(cardKey).hours;

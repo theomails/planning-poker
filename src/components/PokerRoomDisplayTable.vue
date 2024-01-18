@@ -188,7 +188,7 @@ export default {
 
 .app-pp-table-area{
     height: 100%;
-    padding: 100px 10px;
+    padding: 120px 10px;
     position: relative;
 }
 .app-pp-table{
@@ -196,7 +196,7 @@ export default {
     min-width: 120px;
     max-width: 400px;
     height: 20%;
-    min-height: 100px;
+    min-height: 120px;
     margin: auto;
 
     border: 3px solid #b3be7c;
@@ -224,8 +224,9 @@ export default {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
-    width:40px;
-    height:50px;
+    width:50px;
+    height:60px;
+    padding: 5px;
     font-size: 0.8em;
     background-color: #d3d4cc;
     border-radius: 5px;

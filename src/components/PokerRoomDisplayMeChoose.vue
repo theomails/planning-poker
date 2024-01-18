@@ -61,11 +61,11 @@ export default{
     justify-content: center;
 }
 .app-point-card{
-    padding: 10px;
+    padding: 10px 5px;
     margin: 5px;
 
-    width:38px;
-    height:56px;
+    width:50px;
+    height:66px;
     cursor: pointer;
     font-size: 0.8em;
 

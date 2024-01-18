@@ -134,8 +134,8 @@ export default{
     padding: 10px;
     margin: 5px;
 
-    width:66px;
-    height:50px;
+    width:62px;
+    height:70px;
     font-size: 0.8em;
     text-align: center;
 

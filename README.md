@@ -1,4 +1,9 @@
 # vm-planning-poker
+This project goes with Firebase CLI. So, you may have to `firebase init`, etc. to get the DB connected.
+Also, `npm run build` and then `firebase deploy` to deploy to prod.
+
+Hints:
+  - Use `set NODE_OPTIONS=--openssl-legacy-provider && ` in package.json or `export NODE_OPTIONS=--openssl-legacy-provider` in terminal in case of SSL/certificate issues.
 
 ## Project setup
 ```
