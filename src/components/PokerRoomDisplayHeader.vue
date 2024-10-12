@@ -32,7 +32,7 @@
         </div>
         <div class="app-game-room-time">
             <div class="app-game-room-time-display" v-if="room.state=='VOTING'"
-                :class="{'app-time-warn':warnTime}">
+                :class="{'app-time-warn':timeInWarning}">
                 <el-icon><Clock /></el-icon> 
                 &nbsp;&nbsp;&nbsp;
                 <span>{{ storyElapsedTime }}</span>
@@ -48,7 +48,7 @@ export default{
         return {
             nowTime: null,
             nowTimer: null,
-            warnTime: false,
+            timeInWarning: false,
             currentStory: {}
         }
     },
@@ -121,6 +121,7 @@ export default{
             }
         },
         onStartGame(){
+            this.timeInWarning = false;
             this.onFormat();
             this.$notify({
                     message: 'Starting game..',
@@ -135,10 +136,10 @@ export default{
             var diffSec = Math.floor(diff/1000);
             var diffMin = Math.floor(diffSec/60);
 
-            if(this.warnTime) return; //Already warned
+            if(this.timeInWarning) return; //Already warned
 
             if(diffMin>=2){
-                this.warnTime = true;
+                this.timeInWarning = true;
                 this.$notify({
                     message: 'Time warning..',
                     showClose: false,
@@ -152,18 +153,16 @@ export default{
                     clearInterval(this.nowTimer);
                     this.nowTimer = null;
                 }
-            }
 
-            if(this.room?.state=='SETUP'){
-                this.$nextTick( ()=>{ 
-                    this.$refs.txtStoryName.focus();
-                    this.$refs.txtStoryName.select();
-                } );
-            }else if(this.room?.state=='VOTING'){
-                this.warnTime = false;
+                if(this.room?.state=='SETUP'){
+                    this.$nextTick( ()=>{ 
+                        this.$refs.txtStoryName.focus();
+                        this.$refs.txtStoryName.select();
+                    } );
+                }
+            }else{
                 if(this.nowTimer){
                     clearInterval(this.nowTimer);
-                    this.nowTimer = null;
                 }
                 this.nowTimer = setInterval(()=>{ 
                     this.setNowTime();
@@ -206,6 +205,7 @@ export default{
         }
     },
     mounted(){
+        this.timeInWarning = false;
         this.onContextChange();
     },
     components:{
