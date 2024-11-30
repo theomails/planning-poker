@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <vue-progress-bar></vue-progress-bar>
+    <XmasDecor />
     <div class="app-header">
       <div class="app-header-logo" @click="logoClick">
         <el-icon ><ChatDotSquare /></el-icon>
@@ -23,6 +24,7 @@
 </template>
 <script>
 import pokerservice from '@/pokerservice'
+import XmasDecor from './components/XmasDecor.vue';
 
 export default {
   name: 'App',
@@ -51,7 +53,7 @@ export default {
     this.checkUserChange();
   },
   components: {
-    
+    XmasDecor
   }
 }
 </script>
@@ -63,6 +65,7 @@ export default {
   padding: 30px 30px 15px 30px;
   display: flex;
   align-items: center;
+  z-index: 10;
 }
 .app-flex-spacer{
   flex-grow: 1;
