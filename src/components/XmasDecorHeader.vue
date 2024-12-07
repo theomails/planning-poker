@@ -1,16 +1,10 @@
 <template>
     <div class="xmas-decor-container">
-        <div class="merry-christmas"><img  :src="imageUrl" /></div>
         <div class="holiday-container" id="holidayEffects"></div>
     </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            imageUrl: require('@/assets/xmas decor.png'), // Dynamically resolves the path
-        };
-    },
     methods: {
         createConfetti() {
             const colors = ['#DC143C', '#006400', '#FFFFFF']; // Red, Green, White
@@ -76,30 +70,15 @@ export default {
 }
 </script>
 <style>
+    .xmas-decor-container {
+        pointer-events: none;
+    }
     .holiday-container {
         position: absolute;
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100vh;
-        pointer-events: none;
-    }
-    .merry-christmas {
-        position: absolute;
-        bottom: 5px;
-        width: 100vw;
-        text-align: center;
-    }
-    .merry-christmas img{
-        background: none;
-        width: calc( max( 30vw, 300px) );
-        -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 80%);
-        -webkit-mask-size: cover;
-        -webkit-mask-repeat: no-repeat;
-        mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 80%);
-        mask-size: cover;
-        mask-repeat: no-repeat;
-        z-index: 0;
+        height: 30vh;
     }
     @keyframes christmas-glow {
         0% {
