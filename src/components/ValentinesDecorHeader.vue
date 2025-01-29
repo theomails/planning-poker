@@ -62,7 +62,7 @@ export default {
         }
     },
     mounted(){
-        setInterval(this.createHearts, 300);
+        setInterval(this.createHearts, 600);
         setInterval(this.createBubbles, 500);
         setInterval(this.createSparkles, 1000);
     }
@@ -94,7 +94,7 @@ export default {
         position: absolute;
         font-size: 26px;
         color: gold;
-        animation: fall-and-fade 1.5s ease-in-out infinite alternate;
+        animation: fall-and-fade 1.5s ease-in-out infinite;
     }
     @keyframes fall-and-fade {
         0% {
