@@ -98,3 +98,19 @@ html {
     vertical-align: middle;
     margin:5px;
   }
+  .disp-flex-row{
+    display: flex;
+    align-items: center;
+  }
+  .disp-flex-grow{
+    flex-grow: 1;
+  }
+  .disp-icon-big{
+    font-size: 1.4em;
+  }
+  .disp-app-font{
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+  }
+  .disp-app-font *{
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+  }

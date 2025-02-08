@@ -30,6 +30,28 @@
                 </span>
             </p>
         </div>
+        <el-popover placement="left-start" :width="400" :visible="pointsInfoVisible">
+            <template #reference>
+                <div  class="disp-app-font app-game-room-points-trigger">
+                    <el-button class="app-game-room-points-button" style="margin-right: 16px" @click="pointsInfoVisible=!pointsInfoVisible">
+                        Story Points &nbsp;
+                        <el-icon><InfoFilled /></el-icon>
+                    </el-button>
+                </div>
+            </template>
+
+            <el-table :data="storyPointsInfo" :stripe="true" class="disp-app-font">
+                <el-table-column width="80" property="points" label="Points" />
+                <el-table-column width="100" property="hours" label="Estimate" />
+                <el-table-column width="180" property="comments" label="What it means" />
+            </el-table>
+            <div  class="disp-app-font disp-flex-row" style="align-items: baseline;margin-top:10px">
+                <IconBulb class="disp-icon-big" style="color: #FFD700 "></IconBulb>
+                <div class="disp-flex-grow" style="margin-left:7px">Estimate for Dev and QA put together!</div>
+                <el-button style="margin-top:5px" size="small" round type="info"
+                    @click="pointsInfoVisible=false">Close</el-button>
+            </div>
+        </el-popover>
         <div class="app-game-room-time">
             <div class="app-game-room-time-display" v-if="room.state=='VOTING'"
                 :class="{'app-time-warn':timeInWarning}">
@@ -41,6 +63,7 @@
     </div>
 </template>
 <script>
+import IconBulb from '@/components/icons/IconBulb.vue';
 
 export default{
     props: ["room", "user"],
@@ -49,7 +72,16 @@ export default{
             nowTime: null,
             nowTimer: null,
             timeInWarning: false,
-            currentStory: {}
+            currentStory: {},
+            pointsInfoVisible: false,
+            storyPointsInfo:[
+                {points: 1, hours: "1h - 10h", comments: "Its trivial!"},
+                {points: 2, hours: "11h - 20h", comments: "Simple to implement"},
+                {points: 3, hours: "21h - 30h", comments: "Minor feature"},
+                {points: 5, hours: "31h - 50h", comments: "Regular feature"},
+                {points: 8, hours: "51h - 75h", comments: "Complex feature"},
+                {points: 13, hours: "76h - 100h", comments: "Its a big one! Split?"}
+            ]
         }
     },
     methods:{
@@ -209,7 +241,7 @@ export default{
         this.onContextChange();
     },
     components:{
-        
+        IconBulb
     }
 }
 </script>
@@ -257,6 +289,19 @@ border-bottom: 1px solid #cc421c;
     display: flex;
     align-items: center;
     padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+.app-game-room-points-trigger{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.app-game-room-points-button{
+    display: flex;
+    font-size: 1.0em;
+    align-items: center;
+    padding: 20px 20px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
