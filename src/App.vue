@@ -2,7 +2,7 @@
   <div id="app">
     <vue-progress-bar></vue-progress-bar>
     <!-- <XmasDecorHeader /> -->
-    <ValentinesDecorHeader />
+    <!-- ValentinesDecorHeader / -->
     <div class="app-header">
       <div class="app-header-logo" @click="logoClick">
         <el-icon ><ChatDotSquare /></el-icon>
@@ -28,7 +28,7 @@
 import pokerservice from '@/pokerservice'
 //import XmasDecorHeader from './components/XmasDecorHeader.vue';
 //import XmasDecorFooter from './components/XmasDecorFooter.vue';
-import ValentinesDecorHeader from './components/ValentinesDecorHeader.vue';
+//import ValentinesDecorHeader from './components/ValentinesDecorHeader.vue';
 
 export default {
   name: 'App',
@@ -59,7 +59,7 @@ export default {
   components: {
     //XmasDecorHeader,
     //XmasDecorFooter,
-    ValentinesDecorHeader
+    //ValentinesDecorHeader
   }
 }
 </script>
